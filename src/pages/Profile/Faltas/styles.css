@@ -1,0 +1,15 @@
+.faltas-container{
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.faltas-container table{
+    width: 1000px;
+    line-height: 50px;
+    text-align: center;
+}
