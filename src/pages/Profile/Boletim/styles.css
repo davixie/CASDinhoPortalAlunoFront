@@ -1,0 +1,26 @@
+.boletim li{
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.boletim-title{
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.boletim ul{
+    background-color: aqua;
+    border: 5px;
+    border-radius: 10px;
+    border-style: solid;
+}
