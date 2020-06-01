@@ -4,22 +4,33 @@ import Header from '../Header/index';
 import './styles.css';
 
 import api from '../../../services/api';
+import { useHistory } from 'react-router-dom';
 
 export default function Boletim(){
     const NomeStudent = localStorage.getItem('StudentNome');
-    const Student_ID = localStorage.getItem('StudentId')
+    const Student_ID = localStorage.getItem('StudentId');
+    const history = useHistory();
 
     const [notas, setNotas] = useState([])
 
+    async function grades(){
+        try{
+            await api.get('grade', {
+                headers:{
+                    Authorization: Student_ID,
+                }
+            }).then(resposta => (
+                setNotas(resposta.data)
+            ))
+        }catch(err){
+            history.push('/')
+            alert("Não foi possível encontrar alguns dados.")
+        }
+    }
+
     useEffect(() => {
-        api.get('grade', {
-            headers:{
-                Authorization: Student_ID,
-            }
-        }).then(resposta => (
-            setNotas(resposta.data)
-        ))
-    }, [Student_ID]);
+        grades();
+    }, []);
 
     return(
         <div className="profile-container">

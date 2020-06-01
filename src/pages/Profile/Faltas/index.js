@@ -2,19 +2,30 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import Header from '../Header/index';
 import api from '../../../services/api';
+import { useHistory } from 'react-router-dom';
 
 export default function Faltas(){
     const [faltas, setFaltas] = useState([])
     const student_id = localStorage.getItem('StudentId');
+    const history = useHistory()
+
+    async function pegarFaltas(){
+        try{
+            await api.get('falta', {
+                headers:{
+                    Authorization: student_id,
+                }
+            }).then(response => {
+                setFaltas(response.data)
+            })
+        }catch(err){
+            alert('Não foi possível encontrar alguns dados.')
+            history.push('/')
+        }
+    }
 
     useEffect(() => {
-        api.get('falta', {
-            headers:{
-                Authorization: student_id,
-            }
-        }).then(response => {
-            setFaltas(response.data)
-        })
+        pegarFaltas()
     }, [])
     return(
         <div>

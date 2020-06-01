@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
 import logo_CASD from '../../../imagens/logo_CASD.png';
 import logo from '../../../imagens/logo.png';
 import './styles.css';
+import api from '../../../services/api';
 
 export default function Header(){
     const history = useHistory();
     const nome = localStorage.getItem('NomeADM')
-
+    const [adm, setAdm] = useState({})
     function handleLogoff(e){
         e.preventDefault();
 
@@ -16,6 +17,24 @@ export default function Header(){
         history.push('/')
     }
 
+    async function pegarAdm(){
+        try{
+            await api.get('admspecific', {
+                headers: {
+                    Authorization: nome
+                }
+            }).then(resposta => {
+                setAdm(resposta.data)
+            })
+        }catch(err){
+            history.push('/')
+            alert("Não foi possível identificar o usuário.")
+        }
+    }
+
+    useEffect(() => {
+        pegarAdm()
+    },[])
     return(
         <div className="header-container-adm">
             <section className="header-content-adm">

@@ -22,7 +22,6 @@ export default function Login(){
             })
             
             localStorage.setItem('StudentId',id);
-            /*localStorage.setItem('StudentSenha', senha);*/
             localStorage.setItem('StudentNome', response.data.nome);
 
             history.push('/profile');
