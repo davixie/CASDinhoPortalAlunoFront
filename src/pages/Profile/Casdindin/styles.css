@@ -1,0 +1,43 @@
+.casdindin-container{
+    margin: 0 auto;
+    max-width: 2000px;
+    width: 100%;
+
+    text-align: center;
+}
+
+.casdindin-container div h2{
+    margin-bottom: 30px;
+}
+
+.casdindin-container h2{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.casdindin-container .descricao-container{
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 24px;
+}
+
+.casdindin-container .descricao-container .ganho{
+    max-width: 800px;
+    width: 80%;
+    background-color: rgb(7, 121, 7);
+    border: 5px;
+    border-radius: 10px;
+    border-style: solid;
+    text-align: center;
+}
+
+.casdindin-container .descricao-container .perda{
+    max-width: 800px;
+    width: 80%;
+    background-color: rgb(160, 7, 7);
+    border: 5px;
+    border-radius: 10px;
+    border-style: solid;
+    text-align: center;
+}

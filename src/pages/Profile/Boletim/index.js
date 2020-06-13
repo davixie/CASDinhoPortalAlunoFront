@@ -43,42 +43,34 @@ export default function Boletim(){
                             <h2>{etapa.etapa}</h2>
                             <section className="boletim-title">
                                 <h2>Matéria</h2>
-                                <h2>Questões acertadas</h2>
                                 <h2>Nota</h2>
                             </section>
                             <li>
                                 <h3>Matemática</h3>
-                                <h3>34</h3>
                                 <h3>{etapa.notamatematica}</h3>
                             </li>
                             <li>
                                 <h3>Português</h3>
-                                <h3>34</h3>
                                 <h3>{etapa.notaportugues}</h3>
                             </li>
                             <li>
                                 <h3>História</h3>
-                                <h3>34</h3>
                                 <h3>{etapa.notahistoria}</h3>
                             </li>
                             <li>
                                 <h3>Geografia</h3>
-                                <h3>34</h3>
                                 <h3>{etapa.notageografia}</h3>
                             </li>
                             <li>
                                 <h3>Biologia</h3>
-                                <h3>34</h3>
                                 <h3>{etapa.notabiologia}</h3>
                             </li>
                             <li>
                                 <h3>Física</h3>
-                                <h3>34</h3>
                                 <h3>{etapa.notafisica}</h3>
                             </li>
                             <li>
                                 <h3>Química</h3>
-                                <h3>34</h3>
                                 <h3>{etapa.notaquimica}</h3>
                             </li>
                         </ul>

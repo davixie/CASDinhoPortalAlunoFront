@@ -8,7 +8,8 @@ import { useHistory } from 'react-router-dom';
 export default function SetCasdindin(){
     const [student_id, setId] = useState('')
     const history = useHistory()
-    const [ganhar, setGanhar] = useState(false)
+    const [ganhar, setGanhar] = useState(true)
+    const [descricao, setDescricao] = useState('')
     const [quantidade, setQuantidade] = useState(0)
     const [aux, setAux] = useState('')
 
@@ -36,19 +37,25 @@ export default function SetCasdindin(){
         e.preventDefault();
         try{
             let quanty = parseInt(quantidade)
-            console.log('quanty eh ', quanty)
             let casdindin = parseInt(aux)
+            let situacao
             if(ganhar == true){
+                situacao = "ganho"
                 casdindin = casdindin + quanty
             }
             else{
+                situacao = "perda"
                 casdindin = casdindin - quanty
             }
-            console.log('casdindin eh ', casdindin)
-            console.log(casdindin)
             await api.post('/casdinUpdate', {
                 casdindin,
                 student_id
+            })
+            await api.post('/casdindinDescription', {
+                descricao,
+                student_id,
+                situacao,
+                quantidade
             })
             history.push('/adm')
         }catch(err){
@@ -80,6 +87,11 @@ export default function SetCasdindin(){
                         placeholder="Quantidade" 
                         onChange={e => setQuantidade(e.target.value)}    
                     />
+                    <textarea
+                        style={{resize: "vertical"}}
+                        placeholder="Descrição"
+                        onChange={e => setDescricao(e.target.value)}
+                    ></textarea>
                     
                     <button type="submit">ENVIAR</button>
                 </form>

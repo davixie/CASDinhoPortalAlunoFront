@@ -6,6 +6,7 @@ import api from '../../../services/api';
 
 export default function Casdindin(){
     const [casdindin, setCasdindin] = useState(0)
+    const [descricoes, setDescricoes] = useState([])
     const history = useHistory
     const student_Id = localStorage.getItem('StudentId');
     
@@ -18,6 +19,13 @@ export default function Casdindin(){
             }).then(resposta => {
                 setCasdindin(resposta.data.casdindin)
             })
+            await api.get('/casdindinDescription', {
+                headers: {
+                    Authorization: student_Id
+                }
+            }).then(resposta => {
+                setDescricoes(resposta.data)
+            })
         }catch(err){
             history.push('/')
             alert('Não foi possível encontrar a sua quantidade.')
@@ -29,11 +37,20 @@ export default function Casdindin(){
     }, [])
 
     return(
-        <div>
+        <div className="casdindin-container">
             <Header />
             <div>
                 <h2>A sua quantidade de CASDindins até o momento é de: {casdindin}</h2>
             </div>
+            <h2>Segue abaixo as ocorrências</h2>
+            <ul className="descricao-container">
+                {descricoes.map(descricao => (
+                    <li className={descricao.situacao}>
+                        <h3>Ocorrência: {descricao.quantidade} casdindin(s)</h3>
+                        <h3>{descricao.descricao}</h3>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
