@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import {PrivateRouteAdm, PrivateRouteStudent} from './pages/PrivateRoutes'
 
 import Login from './pages/Login/index';
-import LoginAdm from './pages/LoginAdm';
 import Boletim from './pages/Profile/Boletim/index';
 import Home from './pages/Profile/Home/index';
 import Faltas from './pages/Profile/Faltas/index';
@@ -28,7 +27,6 @@ export default function Routes(){
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Login} />
-                <Route path="/login-adm" component={LoginAdm} />
                 <PrivateRouteStudent path="/profile" exact component={Home} />
                 <PrivateRouteStudent path="/profile/boletim" component={Boletim} />
                 <PrivateRouteStudent path="/profile/faltas" component={Faltas} />

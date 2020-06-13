@@ -20,13 +20,24 @@ export default function Login(){
                 id,
                 senha,
             })
-            
             localStorage.setItem('StudentId',id);
             localStorage.setItem('StudentNome', response.data.nome);
 
             history.push('/profile');
+
         }catch(err){
-            alert('Login ou senha incorretos, tente novamente.')
+            try{
+                let login = id
+                const response = await api.post('loginadm', {
+                    login,
+                    senha,
+                })
+                localStorage.setItem('NomeADM', response.data.nome)
+                history.push('/adm')
+            }catch(err){
+                alert('Login ou senha incorretos, tente novamente.')
+            }
+            
         }
     }
 
@@ -48,9 +59,6 @@ export default function Login(){
                         value={senha}
                         onChange={e => setSenha(e.target.value)}
                     />
-                    <Link to="/login-adm">
-                        É adiministrador?
-                    </Link>
                     <button type="submit" className="button">ENTRAR</button>
                 </form>
                 
