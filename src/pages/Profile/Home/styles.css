@@ -2,4 +2,69 @@
     margin: 0 auto;
     max-width: 2000px;
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.home-container .content{
+    margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
+}
+
+.home-container .content button{
+    width: 200px;
+    height: 60px;
+
+    background: #e09d20;
+    border: 0;
+    border-radius: 8px;
+    color: #FFF;
+    font-weight: 700;
+    margin-top: 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.home-container .content button:hover{
+    filter: brightness(90%);
+}
+
+.home-container .content .changePassword{
+    max-width: 800px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.home-container .content .changePassword input{
+    width: 100%;
+    height: 60px;
+    color: #333;
+    border: 1px solid #dcdce6;
+    border-radius: 8px;
+    padding: 0 24px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.home-container .content .changePassword div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.home-container .content .changePassword div button{
+    margin-left: 50px;
+    margin-right: 50px;
 }

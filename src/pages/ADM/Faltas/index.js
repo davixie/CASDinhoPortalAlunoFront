@@ -37,7 +37,8 @@ export default function SetFaltas(){
                         value={id}
                         onChange={e => setId(e.target.value)}
                     />
-                    <input 
+                    <input
+                        type="date"
                         placeholder="Data da falta"
                         value={data}
                         onChange={e => setData(e.target.value)}
