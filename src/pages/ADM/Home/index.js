@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 
 import logo_CASD from '../../../imagens/logo_CASD.png';
 import logo from '../../../imagens/logo.png';
+import CASDvest from '../../../imagens/CASDvest_logo.png'
 import './styles.css';
 import api from '../../../services/api';
 
@@ -40,6 +41,7 @@ export default function Header(){
             <section className="header-content-adm">
                 <img src={logo_CASD} alt="logo CASD"/>
                 <img src={logo} alt="logo" id="imglogo-adm"/>
+                <img src={CASDvest} alt="casdvwest_logo" id="casdvest_logo" />
                 <button type="button" onClick={handleLogoff}>SAIR</button>
             </section>
             <header className="indice-adm">
@@ -52,8 +54,8 @@ export default function Header(){
                 <Link to="/adm/faltas">
                     FALTAS
                 </Link>
-                <Link to="/adm/casdindin">
-                    CASDINDIN
+                <Link to="/adm/eventos">
+                    EVENTOS
                 </Link>
                 <Link to="/adm/novoestudante">
                     CADASTRO DE ALUNO
@@ -65,7 +67,7 @@ export default function Header(){
                     CRIAR ADM
                 </Link>
             </header>
-            <h2>Bem vindo, {nome}!</h2>
+            <h2>Olá {nome}.</h2>
         </div>
     );
 }

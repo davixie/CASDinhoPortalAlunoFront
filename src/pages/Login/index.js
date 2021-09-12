@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import api from '../../services/api';
 
 import CASDinhoImg from '../../imagens/CASDinho.jpg';
+import CASDVestImg from '../../imagens/CASDvest_logo.png'
 import logoImg from '../../imagens/logo.png';
 import './styles.css'
 
@@ -45,7 +46,11 @@ export default function Login(){
         <div className="login">
             <img src={CASDinhoImg} alt="CASDinho"/>
             <div className="login-container">
-                <img src={logoImg} alt="logo"/>
+                <section>
+                    <img src={logoImg} alt="logo"/>
+                    <img src={CASDVestImg} alt="CASDvest_logo"/>
+                </section>
+                
                 <h1>LOGIN</h1>
                 <form onSubmit={handleLogin}>
                     <input 
