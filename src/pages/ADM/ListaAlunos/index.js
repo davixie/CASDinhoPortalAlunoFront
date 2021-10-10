@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import Header from '../Home/index';
+import {Header} from '../Home/index';
 import { Link } from 'react-router-dom';
 
 export default function Lista(){

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { message } from 'antd'
 import api from '../../../services/api';
 
 import './styles.css';
-import Home from '../Home';
+import {Header} from '../Home';
 
 export default function NovoEstudante(){
     const history = useHistory();
@@ -24,16 +24,16 @@ export default function NovoEstudante(){
                 turma,
                 senha
             })
-        alert('ID do novo aluno é: ' + response.data.id)
-        history.push('/adm')
+            message.info('ID do novo aluno é: ' + response.data.id)
+            history.push('/adm')
         }catch(err){
-            alert('Não foi possível fazer o cadastro!')
+            message.error('Não foi possível fazer o cadastro!')
         }
     };
 
     return(
         <div>
-            <Home/>
+            <Header/>
             <section className="section">
                 <h1>Cadastre o novo aluno abaixo:</h1>
                 <form className="novo-estudante-container" onSubmit={handleCreateStudent}>

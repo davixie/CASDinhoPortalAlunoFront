@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { message } from 'antd'
 import './styles.css';
 import Header from '../Header/index';
 import { useHistory } from 'react-router-dom';
@@ -28,7 +29,7 @@ export default function Casdindin(){
             })
         }catch(err){
             history.push('/')
-            alert('Não foi possível encontrar a sua quantidade.')
+            message.error('Não foi possível encontrar a sua quantidade.')
         }
     }
 

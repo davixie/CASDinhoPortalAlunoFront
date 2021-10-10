@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import api from '../../services/api';
-
+import { message } from 'antd'
 import CASDinhoImg from '../../imagens/CASDinho.jpg';
 import CASDVestImg from '../../imagens/CASDvest_logo.png'
 import logoImg from '../../imagens/logo.png';
@@ -36,7 +36,7 @@ export default function Login(){
                 localStorage.setItem('NomeADM', response.data.nome)
                 history.push('/adm')
             }catch(err){
-                alert('Login ou senha incorretos, tente novamente.')
+                message.error('Login ou senha incorretos, tente novamente.')
             }
             
         }

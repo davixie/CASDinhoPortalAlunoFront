@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { message } from 'antd'
 import { useHistory, Link } from 'react-router-dom';
 import api from '../../../services/api'
 import logo_CASD from '../../../imagens/logo_CASD.png';
@@ -28,7 +29,7 @@ export default function Header(){
                 setAluno(resposta.data)
             })
         }catch(err){
-            alert("Não foi possível enconntrar o aluno.")
+            message.error("Não foi possível enconntrar o aluno.")
             history.push('/')
         }
     }

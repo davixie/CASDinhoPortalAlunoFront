@@ -1,13 +1,105 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-
+import { Carousel, Button, Icon, message } from 'antd'
+import CarouselComponent from '../../../components/Carousel/carousel'
 import logo_CASD from '../../../imagens/logo_CASD.png';
 import logo from '../../../imagens/logo.png';
 import CASDvest from '../../../imagens/CASDvest_logo.png'
+import img_alunos from '../../../imagens/img_alunos.jpg'
+import img_sala_aula from '../../../imagens/img_sala_aula.jpg'
 import './styles.css';
 import api from '../../../services/api';
+import { Component } from 'react';
+import "antd/dist/antd.css";
+import { FormComponentProps } from "antd/lib/form";
 
-export default function Header(){
+export default class Header_Page extends Component{
+    constructor(props:FormComponentProps) {
+        super(props);
+        this.next = this.next.bind(this);
+        this.previous = this.previous.bind(this);
+        this.carousel = React.createRef();
+    }
+    next() {
+        this.carousel.next();
+    }
+    previous() {
+        this.carousel.prev();
+    }
+    state={
+        visibleModal:false,
+        list_carousel: [img_alunos, img_sala_aula]
+    }
+    render(){
+        const props = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        };
+        return(
+            <div className="header_page_container">
+                <Header />
+                {/* <CarouselComponent className="CarouselComponent"/> */}
+                <div className = "content-carousel">
+                    <div className="carousel">
+                        <Carousel autoplay ref={node => (this.carousel = node)} {...props} className="carousel-container">
+                            {this.state.list_carousel.map((imgUrl)=>{
+                                if(imgUrl!="" && imgUrl != undefined && imgUrl != null){
+                                    return <img src={imgUrl} alt="imagem palestra" key="0"/>
+                                }
+                            })}
+                        </Carousel>
+                        <Icon type="left" onClick={this.previous} className="prevPicture"/>
+                        <Icon type="right" onClick={this.next} className="nextPicture"/>
+                    </div>
+                    <div className="text_container">
+                        <section className="text_casdinho">
+                            <span>
+                                Nós somos o CASDinho e essa é nossa missão
+                            </span>
+                            <span>
+                                Vamos mudar o mundo por meio da educação
+                            </span>
+                            <span>
+                                Somos uma família capaz de transformar
+                            </span>
+                            <span>
+                                Potencial em movimento e nunca mais parar
+                            </span>
+                            <span>
+                                Bora CASDinho!
+                            </span>
+                        </section>
+                        <section className="text_casdvest">
+                            <span>
+                                É CASD, é CASD, é CASD CASDVEST
+                            </span>
+                            <span>
+                                Vamos mudar o mundo por meio da educação
+                            </span>
+                            <span>
+                                Somos uma família capaz de transformar
+                            </span>
+                            <span>
+                                Potencial em movimento e nunca mais parar
+                            </span>
+                            <span>
+                                Bora CASDVest!
+                            </span>
+                        </section>
+                    </div>
+                    
+                </div>    
+            </div>
+            
+        )
+    }
+    
+}
+
+export function Header(){
     const history = useHistory();
     const nome = localStorage.getItem('NomeADM')
     const [adm, setAdm] = useState({})
@@ -29,7 +121,7 @@ export default function Header(){
             })
         }catch(err){
             history.push('/')
-            alert("Não foi possível identificar o usuário.")
+            message.error("Não foi possível identificar o usuário.")
         }
     }
 
@@ -67,7 +159,8 @@ export default function Header(){
                     CRIAR ADM
                 </Link>
             </header>
-            <h2>Olá {nome}.</h2>
+            <h2>Olá {nome}, seja bem vindo!</h2>
+
         </div>
     );
 }

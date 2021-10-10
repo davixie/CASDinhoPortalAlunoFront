@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
+import { message } from 'antd'
 import './styles.css';
-import Home from '../Home';
+import {Header} from '../Home/index';
 import api from '../../../services/api';
 import { useHistory } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ export default function SetCasdindin(){
             })
         }catch(err){
             history.push('/adm')
-            alert('Ocorreu um erro.')
+            message.error('Ocorreu um erro.')
         }   
     }
 
@@ -59,14 +59,14 @@ export default function SetCasdindin(){
             })
             history.push('/adm')
         }catch(err){
-            alert("Não foi possível adicionar, tente novamente mais tarde.")
+            message.error("Não foi possível adicionar, tente novamente mais tarde.")
             history.push('/adm')
         }
     }
 
     return(
         <div>
-            <Home/>
+            <Header/>
             <section className="setcasdindin-container">
                 <form onSubmit={handleSubmit}>
                     <h1>Por favor preencha os dados seguintes com respeito ao respectivo aluno</h1>

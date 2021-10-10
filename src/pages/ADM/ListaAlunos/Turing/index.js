@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './styles.css';
 
-import Header from '../../Home/index';
+import {Header} from '../../Home/index';
 import api from '../../../../services/api';
 
 export default function Turing(){

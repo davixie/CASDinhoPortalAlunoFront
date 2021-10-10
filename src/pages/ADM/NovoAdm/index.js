@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import Home from '../Home'
+import { message } from 'antd'
+import {Header} from '../Home'
 import './styles.css'
 import { useHistory } from 'react-router-dom'
 import api from '../../../services/api'
@@ -19,13 +20,13 @@ export default function NovoAdm(){
             })
             history.push('/adm')
         }catch(err){
-            alert('Não foi possível adicionar o novo ADM, tente novamente mais tarde.')
+            message.error('Não foi possível adicionar o novo ADM, tente novamente mais tarde.')
         }
     }
 
     return(
         <div>
-            <Home />
+            <Header />
             <div className="cadastro-adm">
                 <h1>Cadastrar novo ADM</h1>
                 <form onSubmit={CriarAdm}>

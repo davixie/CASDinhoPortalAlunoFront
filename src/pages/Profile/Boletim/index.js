@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { message } from 'antd'
 import Header from '../Header/index';
 import './styles.css';
 
@@ -24,7 +24,7 @@ export default function Boletim(){
             ))
         }catch(err){
             history.push('/')
-            alert("Não foi possível encontrar alguns dados.")
+            message.error("Não foi possível encontrar alguns dados.")
         }
     }
 

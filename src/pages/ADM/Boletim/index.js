@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Home from '../Home/index';
+import {Header} from '../Home/index';
+import { message } from 'antd'
 
 import api from '../../../services/api';
 
@@ -41,15 +42,15 @@ export default function SetBoletim(){
             })
 
             history.push('/adm');
-            alert('Notas enviadas ao aluno!')
+            message.success('Notas enviadas ao aluno!')
         }catch(err){
-            alert('Não foi possível inserir, tente novamente.')
+            message.error('Não foi possível inserir, tente novamente.')
         }
     }
 
     return(
         <div>
-            <Home />
+            <Header />
             <section className="setboletim-container">
                 <form onSubmit={handleSubmit}>
                     <h1>Por favor preencha os dados seguintes com respeito ao respectivo aluno</h1>

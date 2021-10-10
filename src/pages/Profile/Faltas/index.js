@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { message } from 'antd'
 import './styles.css';
 import Header from '../Header/index';
 import api from '../../../services/api';
@@ -19,7 +20,7 @@ export default function Faltas(){
                 setFaltas(response.data)
             })
         }catch(err){
-            alert('Não foi possível encontrar alguns dados.')
+            message.error('Não foi possível encontrar alguns dados.')
             history.push('/')
         }
     }

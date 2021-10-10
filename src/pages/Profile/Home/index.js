@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { message } from 'antd'
 import './styles.css';
 import Header from '../Header/index';
 import { useHistory } from 'react-router-dom';
@@ -22,7 +23,7 @@ export default function Home(){
                 setAluno(resposta.data)
             })
         }catch(err){
-            alert("Não foi possível enconntrar o aluno.")
+            message.error("Não foi possível enconntrar o aluno.")
             history.push('/')
         }
     }
@@ -62,7 +63,7 @@ export default function Home(){
             }
         } else {
             console.log('aqui entrei')
-            alert("Senha antiga não correspondente.")
+            message.error("Senha antiga não correspondente.")
         }
     }
 

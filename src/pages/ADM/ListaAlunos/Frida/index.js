@@ -3,7 +3,7 @@ import './styles.css';
 
 import api from '../../../../services/api';
 
-import Header from '../../Home/index';
+import {Header} from '../../Home/index';
 
 export default function Frida(){
     const [alunos, setAlunos] = useState([])
