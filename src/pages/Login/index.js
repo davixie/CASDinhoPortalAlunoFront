@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
+import axios from 'axios'
 import { message } from 'antd'
 import CASDinhoImg from '../../imagens/CASDinho.jpg';
 import CASDVestImg from '../../imagens/CASDvest_logo.png'
 import logoImg from '../../imagens/logo.png';
 import './styles.css'
 
+// const BASE_URL = "http://casdplus.herokuapp.com/"
 
 export default function Login(){
     const [id, setId] = useState('');
@@ -17,12 +19,14 @@ export default function Login(){
         e.preventDefault();
 
         try{
-            const response = await api.post('student', {
-                id,
-                senha,
+            console.log("vamos tentar")
+            const response = await api.post('login', {
+                username: id,
+                password: senha,
             })
+            console.log("aqui deu bom")
             localStorage.setItem('StudentId',id);
-            localStorage.setItem('StudentNome', response.data.nome);
+            localStorage.setItem('StudentNome', response.data.token);
 
             history.push('/profile');
 
