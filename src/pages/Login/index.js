@@ -19,30 +19,16 @@ export default function Login(){
         e.preventDefault();
 
         try{
-            console.log("vamos tentar")
             const response = await api.post('login', {
                 username: id,
                 password: senha,
             })
-            console.log("aqui deu bom")
-            localStorage.setItem('StudentId',id);
-            localStorage.setItem('StudentNome', response.data.token);
+            localStorage.setItem('Token', response.data.token);
 
-            history.push('/profile');
+            history.push('/adm');
 
         }catch(err){
-            try{
-                let login = id
-                const response = await api.post('loginadm', {
-                    login,
-                    senha,
-                })
-                localStorage.setItem('NomeADM', response.data.nome)
-                history.push('/adm')
-            }catch(err){
-                message.error('Login ou senha incorretos, tente novamente.')
-            }
-            
+            message.error('Login ou senha incorretos, tente novamente.')
         }
     }
 

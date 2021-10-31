@@ -15,16 +15,15 @@ export default function Home(){
     
     async function selecionarAluno(){
         try{
-            await api.get('/studentspecific', {
-                headers: {
-                    Authorization: id
-                }
-            }).then(resposta => {
-                setAluno(resposta.data)
-            })
+            let token = localStorage.getItem('Token')
+            if(token == null || token == '' || token == undefined){
+                history.push('/')
+                message.error("Não foi possível identificar o usuário.")
+            }
         }catch(err){
-            message.error("Não foi possível enconntrar o aluno.")
+            console.log("aaqui 1")
             history.push('/')
+            message.error("Não foi possível identificar o usuário.")
         }
     }
     
@@ -71,7 +70,7 @@ export default function Home(){
         <div className="home-container">
             <Header />
             <div className="content">
-                <h2>Seja bem vindo, {aluno.nome}</h2>
+                <h2>Seja bem vindo, Administrador</h2>
                 {
                     show ?
                     <form className="changePassword" onSubmit={() => changePassword(senha, newSenha)}>

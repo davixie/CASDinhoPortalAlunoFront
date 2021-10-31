@@ -101,39 +101,36 @@ export default class Header_Page extends Component{
 
 export function Header(){
     const history = useHistory();
-    const nome = localStorage.getItem('NomeADM')
-    const [adm, setAdm] = useState({})
     function handleLogoff(e){
         e.preventDefault();
-
         localStorage.clear();
         history.push('/')
     }
 
-    async function pegarAdm(){
+    async function checkValid(){
         try{
-            await api.get('admspecific', {
-                headers: {
-                    Authorization: nome
-                }
-            }).then(resposta => {
-                setAdm(resposta.data)
-            })
+            console.log("aaqui 0")
+            let token = localStorage.getItem('Token')
+            if(token == null || token == '' || token == undefined){
+                history.push('/')
+                message.error("Não foi possível identificar o usuário.")
+            }
         }catch(err){
+            console.log("aaqui 1")
             history.push('/')
             message.error("Não foi possível identificar o usuário.")
         }
     }
 
     useEffect(() => {
-        pegarAdm()
+        checkValid()
     },[])
     return(
         <div className="header-container-adm">
             <section className="header-content-adm">
                 <img src={logo_CASD} alt="logo CASD"/>
                 <img src={logo} alt="logo" id="imglogo-adm"/>
-                <img src={CASDvest} alt="casdvwest_logo" id="casdvest_logo" />
+                <img src={CASDvest} alt="casdvest_logo" id="casdvest_logo" />
                 <button type="button" onClick={handleLogoff}>SAIR</button>
             </section>
             <header className="indice-adm">
@@ -159,7 +156,7 @@ export function Header(){
                     CRIAR ADM
                 </Link>
             </header>
-            <h2>Olá {nome}, seja bem vindo!</h2>
+            <h2>Olá Administrador, seja bem vindo!</h2>
 
         </div>
     );
