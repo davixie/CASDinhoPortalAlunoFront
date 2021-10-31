@@ -1,5 +1,5 @@
 export const AdmAuthenticated = () => {
-    if (localStorage.getItem('NomeADM') != null && localStorage.getItem('NomeADM') != undefined){
+    if (localStorage.getItem('Token') != null && localStorage.getItem('Token') != undefined){
         return true
     }
     else{

@@ -19,12 +19,13 @@ export default function Login(){
         e.preventDefault();
 
         try{
+            console.log("aqui em 0")
             const response = await api.post('login', {
                 username: id,
                 password: senha,
             })
             localStorage.setItem('Token', response.data.token);
-
+            console.log("aqui em 1")
             history.push('/adm');
 
         }catch(err){
