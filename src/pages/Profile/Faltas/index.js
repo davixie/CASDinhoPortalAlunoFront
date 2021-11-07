@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { message } from 'antd'
 import './styles.css';
 import Header from '../Header/index';
-import api from '../../../services/api';
+import { api_admin } from '../../../services/api';
 import { useHistory } from 'react-router-dom';
 
 export default function Faltas(){
@@ -12,7 +12,7 @@ export default function Faltas(){
 
     async function pegarFaltas(){
         try{
-            await api.get('falta', {
+            await api_admin.get('falta', {
                 headers:{
                     Authorization: student_id,
                 }

@@ -10,8 +10,8 @@ import Casdindin from './pages/Profile/Casdindin/index';
 
 import Header_Page from './pages/ADM/Home';
 import SetBoletim from './pages/ADM/Boletim';
-import SetCasdindin from './pages/ADM/Eventos';
-import SetFaltas from './pages/ADM/Faltas';
+import SetMensagensAdmin from './pages/ADM/Mensagens';
+import SetEventosAdmin from './pages/ADM/Eventos';
 import NovoEstudante from './pages/ADM/NovoEstudante';
 import NovoAdm from './pages/ADM/NovoAdm';
 import Lista from './pages/ADM/ListaAlunos';
@@ -34,8 +34,8 @@ export default function Routes(){
 
                 <PrivateRouteAdm path="/adm" exact component={Header_Page} />
                 <PrivateRouteAdm path="/adm/boletim" component={SetBoletim} />
-                <PrivateRouteAdm path="/adm/eventos" component={SetCasdindin} />
-                <PrivateRouteAdm path="/adm/faltas" component={SetFaltas} />
+                <PrivateRouteAdm path="/adm/mensagens" component={SetMensagensAdmin} />
+                <PrivateRouteAdm path="/adm/eventos" component={SetEventosAdmin} />
                 <PrivateRouteAdm path="/adm/novoestudante" component={NovoEstudante} />
                 <PrivateRouteAdm path="/adm/novoadm" component={NovoAdm} />
                 

@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css';
-
+import { message } from 'antd'
 import {Header} from '../../Home/index';
-import api from '../../../../services/api';
+import { api_admin } from '../../../../services/api';
+import { useHistory } from 'react-router';
 
 export default function Alunos(){
     const[alunos, setAlunos] = useState([])
+    const token = localStorage.getItem("Token")
+    const history = useHistory()
+
+    async function get_all_students(){
+        try{
+            let response = await api_admin.get('/students', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if(response.status == 200){
+                setAlunos(response.data)
+            }else{
+                message.error('Não foi possível listar os alunos')
+                history.push("/adm")
+            }
+        }catch(err){
+            message.error('Houve erro de conexão, tente novamente mais tarde')
+            history.push("/adm")
+        }
+    }
 
     useEffect(() => {
-        api.get('register')
-        .then(response => {
-            setAlunos(response.data)
-        })
+        get_all_students()
     }, [])
 
     return(
@@ -19,19 +38,25 @@ export default function Alunos(){
             <Header />
             <div className="alunos-students">
                 <h1>TODOS OS ALUNOS</h1>
-                <table border="1">
-                    <tr>
-                        <td>Nome</td>
+                <table>
+                    <tr className="title">
                         <td>ID</td>
-                        <td>TURMA</td>
+                        <td>Nome</td>
+                        <td>Sobrenome</td>
+                        <td>Email</td>
+                        <td>Usuário</td>
+                        <td>Aniversário</td>
                         <td>Senha</td>
                     </tr>
                     {alunos.map(aluno => (
                         <tr>
-                            <td>{aluno.nome}</td>
                             <td>{aluno.id}</td>
-                            <td>{aluno.turma}</td>
-                            <td>{aluno.senha}</td>
+                            <td>{aluno.first_name}</td>
+                            <td>{aluno.last_name}</td>
+                            <td>{aluno.email}</td>
+                            <td>{aluno.username}</td>
+                            <td>{aluno.birthday}</td>
+                            <td>{aluno.password}</td>
                         </tr>
                     ))}
                 </table>

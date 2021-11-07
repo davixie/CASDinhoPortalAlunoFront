@@ -3,7 +3,7 @@ import { message } from 'antd'
 import Header from '../Header/index';
 import './styles.css';
 
-import api from '../../../services/api';
+import { api_admin } from '../../../services/api';
 import { useHistory } from 'react-router-dom';
 
 export default function Boletim(){
@@ -15,7 +15,7 @@ export default function Boletim(){
 
     async function grades(){
         try{
-            await api.get('grade', {
+            await api_admin.get('grade', {
                 headers:{
                     Authorization: Student_ID,
                 }

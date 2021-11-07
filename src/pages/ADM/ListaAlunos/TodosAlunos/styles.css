@@ -1,6 +1,6 @@
 .alunos-students{
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 2000px;
     width: 100%;
 
     display: flex;
@@ -12,4 +12,8 @@
     width: 1000px;
     line-height: 50px;
     text-align: center;
+}
+
+.alunos-students table .title{
+    font-weight: bold;
 }

@@ -3,7 +3,7 @@ import { message } from 'antd'
 import './styles.css';
 import Header from '../Header/index';
 import { useHistory } from 'react-router-dom';
-import api from '../../../services/api';
+import { api_admin } from '../../../services/api';
 
 export default function Home(){
     const [aluno, setAluno] = useState({})
@@ -51,7 +51,7 @@ export default function Home(){
         let auth = confirmPassword(oldPassword)
         if (auth === 0){
             try{
-                await api.post('/student/upgrade', {
+                await api_admin.post('/student/upgrade', {
                     id,
                     newPassword
                 }).catch(err => console.log(err))

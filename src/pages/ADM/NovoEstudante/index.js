@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { message } from 'antd'
-import api from '../../../services/api';
+import { api_admin } from '../../../services/api';
 
 import './styles.css';
 import {Header} from '../Home';
@@ -18,7 +18,7 @@ export default function NovoEstudante(){
         e.preventDefault();
 
         try{
-            const response = await api.post('register', {
+            const response = await api_admin.post('register', {
                 nome,
                 whatsapp,
                 turma,

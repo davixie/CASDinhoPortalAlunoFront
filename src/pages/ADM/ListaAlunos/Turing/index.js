@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import './styles.css';
 
 import {Header} from '../../Home/index';
-import api from '../../../../services/api';
+import { api_admin } from '../../../../services/api';
 
 export default function Turing(){
     const [alunos, setAlunos] = useState([]);
 
     useEffect(() => {
-        api.get('turing')
+        api_admin.get('turing')
         .then(response => {
             setAlunos(response.data);
         })

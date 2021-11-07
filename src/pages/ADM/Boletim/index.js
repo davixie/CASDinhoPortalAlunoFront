@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import {Header} from '../Home/index';
 import { message } from 'antd'
 
-import api from '../../../services/api';
+import { api_admin } from '../../../services/api';
 
 import './styles.css';
 
@@ -35,7 +35,7 @@ export default function SetBoletim(){
         };
 
         try{
-            await api.post('grade', data, {
+            await api_admin.post('grade', data, {
                 headers: {
                     Authorization: id,
                 }

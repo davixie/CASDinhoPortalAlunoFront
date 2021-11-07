@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { Carousel, Button, Icon, message } from 'antd'
-import CarouselComponent from '../../../components/Carousel/carousel'
 import logo_CASD from '../../../imagens/logo_CASD.png';
 import logo from '../../../imagens/logo.png';
 import CASDvest from '../../../imagens/CASDvest_logo.png'
 import img_alunos from '../../../imagens/img_alunos.jpg'
 import img_sala_aula from '../../../imagens/img_sala_aula.jpg'
 import './styles.css';
-import api from '../../../services/api';
+import { api_admin } from '../../../services/api';
 import { Component } from 'react';
 import "antd/dist/antd.css";
 import { FormComponentProps } from "antd/lib/form";
@@ -101,22 +100,37 @@ export default class Header_Page extends Component{
 
 export function Header(){
     const history = useHistory();
-    function handleLogoff(e){
+    const [name, setName] = useState("")
+
+    async function handleLogoff(e){
         e.preventDefault();
-        localStorage.clear();
-        history.push('/')
+        try{
+            let token = localStorage.getItem("Token")
+            const response = await api_admin.delete('logout', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if(response.status == 200){
+                localStorage.clear();
+                history.push('/');
+            }else{
+                message.error('Houve um erro, tente novamente mais tarde');
+                localStorage.clear();
+                history.push('/');
+            }
+        }catch(err){
+            message.error('Infelizmente a conexão falhou no momento, tente novamente mais tarde.')
+            localStorage.clear();
+            history.push('/');
+        }
     }
 
     async function checkValid(){
         try{
-            console.log("aaqui 0")
-            let token = localStorage.getItem('Token')
-            if(token == null || token == '' || token == undefined){
-                history.push('/')
-                message.error("Não foi possível identificar o usuário.")
-            }
+            let name_local = localStorage.getItem('name')
+            setName(name_local)
         }catch(err){
-            console.log("aaqui 1")
             history.push('/')
             message.error("Não foi possível identificar o usuário.")
         }
@@ -140,14 +154,14 @@ export function Header(){
                 <Link to="/adm/boletim">
                     BOLETIM
                 </Link>
-                <Link to="/adm/faltas">
-                    FALTAS
-                </Link>
                 <Link to="/adm/eventos">
                     EVENTOS
                 </Link>
+                <Link to="/adm/mensagens">
+                    MENSAGENS
+                </Link>
                 <Link to="/adm/novoestudante">
-                    CADASTRO DE ALUNO
+                    CADASTRO ALUNO
                 </Link>
                 <Link to="/adm/lista">
                     LISTA DOS ALUNOS
@@ -156,7 +170,7 @@ export function Header(){
                     CRIAR ADM
                 </Link>
             </header>
-            <h2>Olá Administrador, seja bem vindo!</h2>
+            <h2>Olá {name}, seja bem vindo!</h2>
 
         </div>
     );

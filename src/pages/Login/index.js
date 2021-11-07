@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import api from '../../services/api';
-import axios from 'axios'
+import { api_admin } from '../../services/api';
 import { message } from 'antd'
 import CASDinhoImg from '../../imagens/CASDinho.jpg';
 import CASDVestImg from '../../imagens/CASDvest_logo.png'
@@ -17,17 +16,41 @@ export default function Login(){
         e.preventDefault();
 
         try{
-            console.log("aqui em 0")
-            const response = await api.post('login', {
+            const response = await api_admin.post('login', {
                 username: id,
                 password: senha,
             })
-            localStorage.setItem('Token', response.data.token);
-            console.log("aqui em 1")
-            history.push('/adm');
+            if(response.status == 200){
+                localStorage.setItem('Token', response.data.token);
+                await checkValid(response.data.token)
+                history.push('/adm');
+            }else if(response.status == 406){
+                message.error('Login ou senha incorretos, tente novamente.')
+            }else{
+                message.error('Login ou senha incorretos, tente novamente.')
+            }
+        }catch(err){
+            message.error('Infelizmente a conexão falhou no momento, tente novamente mais tarde.')
+        }
+    }
+
+    async function checkValid(token){
+        try{
+            const response = await api_admin.get('/', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if(response.status == 200){
+                localStorage.setItem('name', response.data.first_name)
+                localStorage.setItem('admin_id', response.data.id)
+            }else{
+                message.error('Houve um erro, tente novamente mais tarde');
+            }
 
         }catch(err){
-            message.error('Login ou senha incorretos, tente novamente.')
+            history.push('/')
+            message.error("Não foi possível identificar o usuário.")
         }
     }
 

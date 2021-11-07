@@ -1,101 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { message } from 'antd'
 import './styles.css';
-import {Header} from '../Home/index';
-import api from '../../../services/api';
+import {Header} from '../Home';
+import { api_admin } from '../../../services/api';
 import { useHistory } from 'react-router-dom';
 
-export default function SetCasdindin(){
-    const [student_id, setId] = useState('')
-    const history = useHistory()
-    const [ganhar, setGanhar] = useState(true)
-    const [descricao, setDescricao] = useState('')
-    const [quantidade, setQuantidade] = useState(0)
-    const [aux, setAux] = useState('')
+export default function SetEventosAdmin(){
+    const token = localStorage.getItem("Token")
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [date, setDate] = useState('')
+    const class_id = "1"
 
-    async function getQuant(){
-        try{
-            await api.get('/casdindin', {
-                headers: {
-                    Authorization: student_id
-                }
-            }).then(resposta => {
-                console.log(resposta.data)
-                setAux(resposta.data.casdindin)
-            })
-        }catch(err){
-            history.push('/adm')
-            message.error('Ocorreu um erro.')
-        }   
-    }
+    const history = useHistory();
 
-    useEffect(() => {
-        getQuant()
-    }, [student_id])
-
-    async function handleSubmit(e){
+    async function handleFaltas(e){
         e.preventDefault();
         try{
-            let quanty = parseInt(quantidade)
-            let casdindin = parseInt(aux)
-            let situacao
-            if(ganhar == true){
-                situacao = "ganho"
-                casdindin = casdindin + quanty
-            }
-            else{
-                situacao = "perda"
-                casdindin = casdindin - quanty
-            }
-            await api.post('/casdinUpdate', {
-                casdindin,
-                student_id
+            //console.log("data: ", date)
+            let response = await api_admin.post('/events', {
+                name,
+                description,
+                date,
+                class_id
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             })
-            await api.post('/casdindinDescription', {
-                descricao,
-                student_id,
-                situacao,
-                quantidade
-            })
-            history.push('/adm')
+            if(response.status == 200){
+                message.success('Evento criado')
+                history.push('/adm')
+            }else{
+                message.error('Verifique as informações e tente novamente')
+            }
         }catch(err){
-            message.error("Não foi possível adicionar, tente novamente mais tarde.")
+            message.error("Não foi possível criar o evento, tente novamente mais tarde.")
             history.push('/adm')
         }
     }
-
     return(
         <div>
             <Header/>
-            <section className="setcasdindin-container">
-                <form onSubmit={handleSubmit}>
-                    <h1>Por favor preencha os dados seguintes com respeito ao respectivo aluno</h1>
+            <div className="setfaltas-container">
+                <form onSubmit={handleFaltas}>
+                    <h1>Crie evento</h1>
                     <input
-                        placeholder="ID do Aluno" 
-                        value={student_id}
-                        onChange={e => setId(e.target.value)}    
-                    />
-                    <select 
-                        placeholder="Deseja dar ou tirar?"
-                        onChange={e => setGanhar(e.target.value)}
-                        defaultValue={true}
-                    >
-                        <option value={false}>Perder</option>
-                        <option value={true}>Ganhar</option>
-                    </select>
-                    <input
-                        placeholder="Quantidade" 
-                        onChange={e => setQuantidade(e.target.value)}    
+                        placeholder="Nome do Evento"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                     />
                     <textarea
-                        style={{resize: "vertical"}}
                         placeholder="Descrição"
-                        onChange={e => setDescricao(e.target.value)}
-                    ></textarea>
-                    
-                    <button type="submit">ENVIAR</button>
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                    <input
+                        type="date"
+                        placeholder="Data do Evento"
+                        value={date}
+                        onChange={e => setDate(e.target.value)}
+                    />
+                    <button type="submit">LANÇAR</button>
                 </form>
-            </section>
+            </div>
         </div>
     );
 }

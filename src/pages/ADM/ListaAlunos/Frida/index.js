@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 
-import api from '../../../../services/api';
+import { api_admin } from '../../../../services/api';
 
 import {Header} from '../../Home/index';
 
@@ -9,7 +9,7 @@ export default function Frida(){
     const [alunos, setAlunos] = useState([])
 
     useEffect(() => {
-        api.get('frida')
+        api_admin.get('frida')
         .then(response => {
             setAlunos(response.data);
         })

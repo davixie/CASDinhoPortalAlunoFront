@@ -3,7 +3,7 @@ import { message } from 'antd'
 import './styles.css';
 import Header from '../Header/index';
 import { useHistory } from 'react-router-dom';
-import api from '../../../services/api';
+import { api_admin } from '../../../services/api';
 
 export default function Casdindin(){
     const [casdindin, setCasdindin] = useState(0)
@@ -13,14 +13,14 @@ export default function Casdindin(){
     
     async function casdindinQuantidade(){
         try{
-            await api.get('/casdindin', {
+            await api_admin.get('/casdindin', {
                 headers: {
                     Authorization: student_Id
                 }
             }).then(resposta => {
                 setCasdindin(resposta.data.casdindin)
             })
-            await api.get('/casdindinDescription', {
+            await api_admin.get('/casdindinDescription', {
                 headers: {
                     Authorization: student_Id
                 }

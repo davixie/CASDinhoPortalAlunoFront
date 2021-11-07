@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './styles.css';
 
 import {Header} from '../../Home/index';
-import api from '../../../../services/api';
+import { api_admin } from '../../../../services/api';
 
 export default function Malala(){
     const [alunos, setAlunos] = useState([])
 
     useEffect(() => {
-        api.get('malala')
+        api_admin.get('malala')
         .then(response => {
             setAlunos(response.data)
         })
