@@ -8,8 +8,6 @@ import CASDVestImg from '../../imagens/CASDvest_logo.png'
 import logoImg from '../../imagens/logo.png';
 import './styles.css'
 
-// const BASE_URL = "http://casdplus.herokuapp.com/"
-
 export default function Login(){
     const [id, setId] = useState('');
     const [senha, setSenha] = useState('');
