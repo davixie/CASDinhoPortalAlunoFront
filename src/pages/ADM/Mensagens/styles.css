@@ -1,68 +1,15 @@
 .setcasdindin-container{
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 2000px;
     width: 100%;
-
-}
-
-.setcasdindin-container input{
-    width: 100%;
-    height: 60px;
-    color: #333;
-    border: 1px solid #dcdce6;
-    border-radius: 8px;
-    padding: 0 24px;
-    margin-top: 20px;
-    font-size: 18px;
-}
-
-.setcasdindin-container textarea{
-    width: 100%;
-    height: 100px;
-    color: #333;
-    border: 1px solid #dcdce6;
-    border-radius: 8px;
-    padding: 10px 24px;
-    margin-top: 20px;
-    font-size: 18px;
-}
-
-.setcasdindin-container select{
-    width: 106%;
-    height: 60px;
-    color: #333;
-    border: 1px solid #dcdce6;
-    border-radius: 8px;
-    padding: 0 24px;
-    margin-top: 20px;
-    font-size: 18px;
-}
-
-.setcasdindin-container form{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: flex-end;
 }
 
-.setcasdindin-container button{
-    width: 200px;
-    height: 50px;
-
-    margin-top: 50px;
-    margin-bottom: 50px;
-
-    background-color: rgb(238, 166, 12);
-    border: 0;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 40px;
-    transition: filter 0.3s;
-}
-
-.setcasdindin-container button:hover{
-    filter: brightness(70%);
+.setcasdindin-container .divbar{
+    width: 3px;
+    background-color: #F9B342;
+    border-radius: 5px;
 }

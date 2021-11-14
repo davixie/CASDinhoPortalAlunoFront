@@ -16,6 +16,7 @@ export default function Login(){
         e.preventDefault();
 
         try{
+            message.info("Aguarde enquanto tentamos fazer o login")
             const response = await api_admin.post('login', {
                 username: id,
                 password: senha,

@@ -1,0 +1,48 @@
+.message-container{
+    margin: 0 auto;
+    max-width: 800px;
+    width: 90%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    margin-bottom: 20px;
+}
+
+.message-container .div_bar{
+    max-width: 800px;
+    width: 100%;
+    height: 3px;
+    margin-bottom: 10px;
+    color: #031035;
+    background-color: #031035;
+}
+
+.message-container section{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.message-container section .text-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.message-container section .text-container h3{
+    color: #000;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+.message-container section .icons-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.message-container section .icons-container span{
+    cursor: pointer;
+    color: #000;
+}

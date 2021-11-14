@@ -44,7 +44,7 @@ export default function SetEventosAdmin(){
             <Header/>
             <div className="setfaltas-container">
                 <form onSubmit={handleFaltas}>
-                    <h1>Crie evento</h1>
+                    <h1>Crie Horários</h1>
                     <input
                         placeholder="Nome do Evento"
                         value={name}
