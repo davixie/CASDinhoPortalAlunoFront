@@ -38,7 +38,7 @@ export default function Message(message_obj){
 
     async function fix(id){
         try{
-            const response = await api_admin.patch(`/messages/${id}/`, {
+            const response = await api_admin.patch(`/messages/${id}/`,{}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

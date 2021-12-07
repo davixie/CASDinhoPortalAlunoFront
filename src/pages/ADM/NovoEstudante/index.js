@@ -9,24 +9,37 @@ import {Header} from '../Home';
 export default function NovoEstudante(){
     const history = useHistory();
 
-    const [nome, setNome] = useState('');
-    const [whatsapp, setWhatsapp] = useState('');
-    const [turma, setTurma] = useState('');
-    const [senha, setSenha] = useState('');
+    const [first_name, setFirstName] = useState('')
+    const [last_name, setLastName] = useState('')
+    const [birthday, setBirthday] = useState('')
+    const [password, setPassword] = useState()
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [class_id, setClassId] = useState(0)
 
     async function handleCreateStudent(e){
         e.preventDefault();
 
         try{
-            const response = await api_admin.post('register', {
-                nome,
-                whatsapp,
-                turma,
-                senha
+            let token = localStorage.getItem('Token')
+            console.log(token)
+            const response = await api_admin.post('students', {
+                first_name: first_name,
+                last_name: last_name,
+                birthday: birthday,
+                password: password,
+                username: username,
+                email: email,
+                class_id: class_id
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             })
-            message.info('ID do novo aluno é: ' + response.data.id)
+            message.success('Aluno cadastrado com sucesso')
             history.push('/adm')
         }catch(err){
+            console.log(err)
             message.error('Não foi possível fazer o cadastro!')
         }
     };
@@ -38,33 +51,41 @@ export default function NovoEstudante(){
                 <h1>Cadastre o novo aluno abaixo:</h1>
                 <form className="novo-estudante-container" onSubmit={handleCreateStudent}>
                     <input 
-                        placeholder="Nome do aluno" 
-                        value={nome}
-                        onChange={e => setNome(e.target.value)}
+                        placeholder="Primeiro nome" 
+                        value={first_name}
+                        onChange={e => setFirstName(e.target.value)}
                     />
                     <input 
-                        placeholder="Whatsapp (opcional, colocar 00000000000 se não houver)"
-                        value={whatsapp}
-                        onChange={e => setWhatsapp(e.target.value)}
+                        placeholder="Último nome (sobrenome)" 
+                        value={last_name}
+                        onChange={e => setLastName(e.target.value)}
                     />
-                    <select 
-                        placeholder="Turma"
-                        value={turma}
-                        onChange={e => setTurma(e.target.value)}
-                        defaultValue={'turma'}
-                    >
-                        <option value="turma">Selecione a turma</option>
-                        <option value="Frida">Frida</option>
-                        <option value="Mandela">Mandela</option>
-                        <option value="Turing">Turing</option>
-                        <option value="Malala">Malala</option>
-                    </select>
-                    
+                    <input
+                        type="date"
+                        placeholder="Data Nascimento"
+                        value={birthday}
+                        onChange={e => setBirthday(e.target.value)}
+                    />
                     <input 
                         type="password"
                         placeholder="senha"
-                        value={senha}
-                        onChange={e => setSenha(e.target.value)}
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <input 
+                        placeholder="Username" 
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
+                    />
+                    <input 
+                        placeholder="E-mail" 
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    <input 
+                        placeholder="Class Id" 
+                        value={class_id}
+                        onChange={e => setClassId(e.target.value)}
                     />
                     <button type="submit">CADASTRAR</button>
                 </form>

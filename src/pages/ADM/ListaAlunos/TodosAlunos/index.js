@@ -36,6 +36,7 @@ export default function Alunos(){
     return(
         <div>
             <Header />
+            
             <div className="alunos-students">
                 <h1>TODOS OS ALUNOS</h1>
                 <table>
