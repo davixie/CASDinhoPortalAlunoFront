@@ -22,7 +22,6 @@ export default function NovoEstudante(){
 
         try{
             let token = localStorage.getItem('Token')
-            console.log(token)
             const response = await api_admin.post('students', {
                 first_name: first_name,
                 last_name: last_name,
@@ -82,8 +81,8 @@ export default function NovoEstudante(){
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
-                    <input 
-                        placeholder="Class Id" 
+                    <input
+                        placeholder="Class Id"
                         value={class_id}
                         onChange={e => setClassId(e.target.value)}
                     />

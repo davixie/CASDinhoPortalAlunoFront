@@ -9,7 +9,7 @@ import Faltas from './pages/Profile/Faltas/index';
 import Casdindin from './pages/Profile/Casdindin/index';
 
 import Header_Page from './pages/ADM/Home';
-import SetBoletim from './pages/ADM/Boletim';
+import SetSchedule from './pages/ADM/Schedule';
 import SetMensagensAdmin from './pages/ADM/Mensagens';
 import SetEventosAdmin from './pages/ADM/Calendar';
 import NovoEstudante from './pages/ADM/NovoEstudante';
@@ -35,7 +35,7 @@ export default function Routes(){
                 <PrivateRouteStudent exact path="/profile/casdindin" component={Casdindin} />
 
                 <PrivateRouteAdm exact path="/adm" exact component={Header_Page} />
-                <PrivateRouteAdm exact path="/adm/boletim" component={SetBoletim} />
+                <PrivateRouteAdm exact path="/adm/schedule" component={SetSchedule} />
                 <PrivateRouteAdm exact path="/adm/mensagens" component={SetMensagensAdmin} />
                 <PrivateRouteAdm exact path="/adm/calendar" component={SetEventosAdmin} />
                 <PrivateRouteAdm exact path="/adm/novoestudante" component={NovoEstudante} />

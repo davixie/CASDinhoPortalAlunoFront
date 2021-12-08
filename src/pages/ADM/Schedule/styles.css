@@ -23,14 +23,18 @@
     align-items: center;
 }
 
-.setboletim-container button{
+.setboletim-container form h1{
+    color: #3192B3;
+}
+
+.setboletim-container form button{
     width: 200px;
     height: 50px;
 
     margin-top: 50px;
     margin-bottom: 50px;
 
-    background-color: rgb(238, 166, 12);
+    background-color: #F9B342;
     border: 0;
     border-radius: 8px;
     cursor: pointer;
@@ -41,6 +45,28 @@
     transition: filter 0.3s;
 }
 
-.setboletim-container button:hover{
+.setboletim-container form button:hover{
     filter: brightness(70%);
+}
+
+.setboletim-container form .carregar_button{
+    background-color: #3192B3;
+    color: #333;
+}
+
+.setboletim-container form .selection h3{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.setboletim-container form .selection select{
+    width: 320px;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.setboletim-container form .selection select option{
+    text-align: center;
 }

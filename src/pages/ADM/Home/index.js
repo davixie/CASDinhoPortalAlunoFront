@@ -151,8 +151,8 @@ export function Header(){
                 <Link to="/adm">
                     HOME
                 </Link>
-                <Link to="/adm/boletim">
-                    BOLETIM
+                <Link to="/adm/schedule">
+                    HORÁRIOS
                 </Link>
                 <Link to="/adm/calendar">
                     CALENDÁRIO
