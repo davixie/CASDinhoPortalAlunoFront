@@ -31,7 +31,7 @@ export default function Login(){
                 message.error('Login ou senha incorretos, tente novamente.')
             }
         }catch(err){
-            message.error('Infelizmente a conexão falhou no momento, tente novamente mais tarde.')
+            message.error('Login ou senha incorretos, tente novamente.')
         }
     }
 

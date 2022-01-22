@@ -163,7 +163,7 @@ export function Header(){
                 <Link to="/adm/novoestudante">
                     CADASTRO ALUNO
                 </Link>
-                <Link to="/adm/lista">
+                <Link to="/adm/lista/alunos">
                     LISTA DOS ALUNOS
                 </Link>
                 <Link to="/adm/novoadm">

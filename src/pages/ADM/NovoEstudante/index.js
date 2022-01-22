@@ -81,11 +81,14 @@ export default function NovoEstudante(){
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
-                    <input
-                        placeholder="Class Id"
-                        value={class_id}
+                    <select 
+                        placeholder="Classe"
                         onChange={e => setClassId(e.target.value)}
-                    />
+                        defaultValue={1}
+                    >
+                        <option value={0}>CASDVest</option>
+                        <option value={1}>CASDinho</option>
+                    </select>
                     <button type="submit">CADASTRAR</button>
                 </form>
             </section>

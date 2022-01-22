@@ -9,7 +9,8 @@ export default function NewMessage(){
     const admin_id = localStorage.getItem('admin_id')
     const [categorias, setCategorias] = useState([])
     const [title, setTitle] = useState("")
-    const [class_id, setCategoria] = useState("")
+    const [label_id, setCategoria] = useState("")
+    const [class_id, setClassId] = useState("")
     const [body, setBody] = useState("")
 
     const history = useHistory()
@@ -45,7 +46,8 @@ export default function NewMessage(){
                 title,
                 body,
                 admin_id,
-                class_id
+                class_id,
+                label_id
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -79,6 +81,14 @@ export default function NewMessage(){
                 {categorias.map(categoria => (
                     <option value={categoria.id}>{categoria.label}</option>
                 ))}
+            </select>
+            <select 
+                placeholder="Classe"
+                onChange={e => setClassId(e.target.value)}
+                defaultValue={1}
+            >
+                <option value={0}>CASDVest</option>
+                <option value={1}>CASDinho</option>
             </select>
             <textarea
                 style={{resize: "vertical"}}
