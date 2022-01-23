@@ -17,11 +17,15 @@ export default function NovoEstudante(){
     const [email, setEmail] = useState('')
     const [class_id, setClassId] = useState(0)
 
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const token = localStorage.getItem('Token')
+
     async function handleCreateStudent(e){
         e.preventDefault();
 
         try{
-            let token = localStorage.getItem('Token')
+            
             const response = await api_admin.post('students', {
                 first_name: first_name,
                 last_name: last_name,
@@ -42,6 +46,40 @@ export default function NovoEstudante(){
             message.error('Não foi possível fazer o cadastro!')
         }
     };
+
+    async function send_csv(e){
+        e.preventDefault()
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+        try {
+            const response = await api_admin.post('/students_bulk', formData,{
+                headers: { 
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${token}`
+                },
+            });
+            if(response.status == 200 || response.status == 201){
+                message.success("Alunos cadastrados.")
+            }else{
+                message.error("Erro no cadastro.")
+            }
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    const handleFileSelect = (event) => {
+        let type_file = event.target.files[0].type
+        if (type_file.substring(type_file.length - 3) == "csv"){
+            console.log("entrou")
+            console.log("\n\ntype:", event.target.files[0].type)
+            setSelectedFile(event.target.files[0])
+        }else{
+            setSelectedFile(null)
+            message.error("APenas arquivos csv são aceitos.")
+        }
+        //console.log("\n\ntype:", event.target.files[0].type)
+    }
 
     return(
         <div>
@@ -90,6 +128,10 @@ export default function NovoEstudante(){
                         <option value={1}>CASDinho</option>
                     </select>
                     <button type="submit">CADASTRAR</button>
+                </form>
+                <form className="novo-estudante-container" onSubmit={send_csv}>
+                    <input type="file" onChange={handleFileSelect}/>
+                    <button type="submit">CADASTRAR LOTE</button>
                 </form>
             </section>
         </div>
