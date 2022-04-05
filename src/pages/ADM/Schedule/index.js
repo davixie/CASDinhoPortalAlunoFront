@@ -81,7 +81,8 @@ export default function SetSchedule(){
                     <h1>Envie um horário de aula</h1>
                     <section className="selection">
                         <h3>Selecione a turma:</h3>
-                        <select>
+                        <select
+                            onChange={e => setId(e.target.value)}>
                             {classes.map(class_ => (
                                 <option value={class_.id}>{class_.name}</option>
                             ))}
